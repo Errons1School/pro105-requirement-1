@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+    
+        /* Typewriter Test */
+        #type-writer {
+            color: black; 
+            font-family: "Courier";
+            font-size: 30px;
+            margin: 10px 0 0 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 30em;
+            animation: type 5s steps(60, end); 
+        }
+
+        @keyframes type { 
+        from { width: 0; } 
+        } 
+
+
+        /* Flicker Test */
+        #flicker-box {
+            width: 100px;
+            height: 100px;
+            background-color: magenta;
+
+            animation: flicker .7s ;
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                opacity: 1;
+            } 10% {
+                opacity: 0;
+            } 25% {
+                opacity: 1;
+            } 50% {
+                opacity: 0;
+            } 65% {
+                opacity: 1;
+            } 70% {
+                opacity: 0;
+            } 80% {
+                opacity: 1;
+            } 95% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes test {
+            from {}
+            to {
+                transform: translateX(500px)
+            }
+        }
+
+        .ps {
+            z-index: 003;
+            cursor: pointer;
+            font-size: 2vw;
+
+            /* Creates neon effect */
+            text-shadow: 0 0 5px rgb(135, 236, 169),
+                        0 0 10px rgb(135,228,236),
+                        0 0 20px rgb(135,228,236),
+                        0 0 40px rgb(135,228,236),
+                        0 0 80px rgb(135,228,236),
+                        0 0 100px rgb(135,228,236),
+                        0 0 120px rgb(135,228,236);
+
+            transition: opacity, text-shadow;
+            transition-duration: 1s, .3s;
+        }
+
+        .ps:hover {
+            text-shadow: 
+            0 0 5px rgb(225, 205, 15),
+            0 0 10px rgb(225, 205, 15),
+            0 0 20px rgb(225, 205, 15),
+            0 0 40px rgb(225, 205, 15),
+            0 0 80px rgb(225, 205, 15);
+        }
+
+        #rado1:checked ~ #p-1 {
+            opacity: 0;
+        }
+
+        #rado2:checked ~ #p-1 {
+            animation: fadeIn 4s linear 1;
+        }
+
+        @keyframes fadeIn {
+            0%, 50% {
+                opacity: 0;
+            } 100% {
+                opacity: 1;
+            }
+        }
+
+        body {
+            background-color: black;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <p id="type-writer">Her er masse ting</p>
+    <div id="flicker-box"></div>
+
+    <!--  
+    <div class="player">
+
+        <video autoplay controls>
+            <source src="../video/intro-video-astertes-noaudio.mp4">
+        </video>
+        <div class="controls">
+            <button class="play" data-icon="P" aria-label="play pause toggle"></button>
+            <button class="stop" data-icon="S" aria-label="stop"></button>
+            <div class ="timer">
+                <div></div>
+                <span aria-label="timer">00:00</span>
+
+            </div>
+            <button class="rwd" data-icon="B" aria-label="rewind"></button>
+            <button class="fwd" data-icon="F" aria-label="fast forward"></button>
+        </div>
+    </div>
+    -->
+
+    <input id="rado1" type="radio" name="rado">
+    <input id="rado2" type="radio" name="rado">
+    <p class="ps" id="p-1">Tekst her</p>
+    <p class="ps" id="p-2">Tekst her</p>
+    
+</body>
+</html>

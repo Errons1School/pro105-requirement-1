@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+
+        /* Sets the background image */
+        body {
+            background: url(../images/astartesback.jpeg) center center;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        /* 
+            A main div that covers the entire window with relative position to more easily be able to position elements 
+            Also sets the font for the entire page
+        */
+        #main-div {
+            position: relative;
+            width: auto;
+            height: 98vh;
+
+            font-family: courier;
+        }
+
+        /* Places the space marine and sets its animation */
+        #space-marine {
+            position: absolute;
+            width: auto;
+            height: auto;
+            max-width: 30%;
+            max-height: 55%;
+            bottom: -1.5vh;
+            left: -50vw;
+
+            animation-name: enter-scene;
+            animation-duration: 2s;
+            animation-timing-function: ease-out;
+            animation-iteration-count: 1;
+            animation-delay: 4s;
+            animation-fill-mode: forwards;
+        }
+
+        /* Animation that slides the space marine into the scene */
+        @keyframes enter-scene {
+            from {
+                
+            } to {
+                transform: translateX(50vw);
+            }
+        }
+
+        /* Makes text appear above space marine when hovered over */
+
+        #space-marine:hover ~ #space-marine-info{
+            opacity: 1;
+            animation: type 2s steps(30, end);
+        }   
+        
+        /* Typing animation, works by revealing the text block in steps, making it seem like its being typed */
+        @keyframes type { 
+            from { 
+                width: 0; opacity: 1;
+            } to {
+                opacity: 1
+            } 
+        } 
+
+        /* Sets colour, shade, and size of Space Marine text */ 
+        #space-marine-info {
+            position: absolute;
+            color: rgb(135,252,233);
+            background-color: rgba( 12 , 66, 37, .7);
+            border: 1px solid rgb(135,252,233);
+            font-size: 2vw;
+            margin: 10px 0 0 10px;
+            bottom: 55vh;
+            left: 0vw;
+            padding: 10px 15px 10px 15px;
+
+            /* Creates neon effect */
+            text-shadow: 0 0 5px rgb(135,228,236),
+                         0 0 10px rgb(135,228,236),
+                         0 0 20px rgb(135,228,236),
+                         0 0 40px rgb(135,228,236),
+                         0 0 80px rgb(135,228,236);
+
+            /* Makes the animation work by stopping overflow and wrap */
+            white-space: nowrap;
+            overflow: hidden;
+            width: 11.4em;
+            
+            opacity: 0;
+        }
+
+        /* Div for the central banner and the elements on it */
+        #astartes-div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        /* The central banner image */
+        #astartes-image {
+            margin: 0;
+            height: 105vh;
+            animation: banner-slide 4s 1s ease-out 1 forwards;
+            opacity: 0;
+        }
+
+        @keyframes banner-slide {
+            from {
+                transform: translateY(100vh);
+            } to {
+                opacity: 1;
+            }
+        }
+
+        /* Sets style and animation for all the center text lines */
+        .astartes-description {
+            color:rgb(171, 151, 110);
+            text-align: center;
+            font-size: 2em;
+
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+
+            /* Makes the animation work by stopping overflow and wrap */
+            white-space: nowrap;
+            overflow: hidden;
+            width: 15em;
+            opacity: 0;
+
+            animation: type 2s steps(30, end) forwards;    
+        }
+
+        /* Indiviual positioning, and delay for each line to make it seem seemless */
+        #desc-first {
+            top: 20%;
+            animation-delay: 5s;
+        }
+        #desc-second {
+            top: 25%;
+            animation-delay: 6s;
+        }
+        #desc-third {
+            top: 30%;
+            animation-delay: 7.5s;
+        }
+        #desc-fourth {
+            top: 38%;
+            animation-delay: 9.5s;
+            font-size: 2.6em;
+        }
+
+        /* Positions the invisible div that makes the gif appear when you hover over the face of the central banner */
+        #play-gif {
+            position: absolute;
+            width: 15vw;
+            height: 26.5vh;
+            z-index: 1;
+
+            transform: translateX(-50%) translateY(-50%);
+            left: 50%;
+            top: 61.4%;
+
+            animation: banner-slide 4s 1s ease-out 1 forwards;
+        }
+
+        /* Sets position of the gif that appears and makes it invisible */
+        #the-gif {
+            position: absolute;
+            transform: translateX(-50%) translateY(-50%);
+            left: 50%;
+            top: 65vh;
+            width: 30vw;
+
+            display: none;
+        }
+
+        /* Makes the gif visible when the play-gif div is hovered over */
+        #play-gif:hover ~ #the-gif {
+            display: block;
+        }
+
+        /* Sets animation, size and such of the space ship that comes flying in */
+        #flying-ship {
+            position: absolute;
+            width: 35vw;
+            transform: rotate(0deg);
+            right: -4vw;
+            bottom: -20vh;
+            z-index: 10;
+
+            opacity: 1;
+            /* 
+                Sets two animations for the ship: 
+                1st one is a hover animation that starts once it has landed
+                2nd one makes the ship fly in, straighten out, and slow down
+            */
+            animation: ship-shake 3s 13 linear infinite, fly-boy 13s ease-out 1;
+        }
+        
+        /* Animation that flies the ship in */
+        @keyframes fly-boy {
+            0% {
+                right: 100vw;
+                bottom: 100vh;
+                transform: rotate(38deg);
+                opacity: 0;
+            } 70% {
+                right: 100vw;
+                bottom: 100vh;
+                transform: rotate(38deg);
+                opacity: 1;
+            }
+        }
+
+        /* Activates a bobbing animation when hovering over the Click To Launch icont
+        #animate-div:hover ~ #flying-ship {
+            animation-play-state: running;
+        }
+
+        Activates a bobbing animation when hovering over the ship */
+        #flying-ship:hover {
+            animation-play-state: running;
+        }
+        
+
+        /* A bobbing animation for the ship */
+        @keyframes ship-shake {
+            0%, 100% {
+                transform: rotate();
+            } 25% {
+                transform: rotate(-2deg);
+            } 50% {
+                transform: rotate();
+            } 75% {
+                transform: rotate(2deg);
+            }
+        }
+
+        /* An invisible div for activating the bobbing animation 
+        #animate-div {
+            position: absolute;
+            bottom: -18vh;
+            width: 29.5vw;
+            height: 33.5vh;
+            z-index: 2;
+        }
+        */
+
+        /* A link to the other html document */
+        #enter-ship {
+            position: absolute;
+            right: 3vw;
+            bottom: 18.2vh;
+            z-index: 1;
+
+            text-decoration: none;
+        }
+
+        /* Sets style for the Click to Launch button */
+        #ship-text {
+            font-size: 2vw;
+            text-decoration: none;
+            text-align: center;
+            text-shadow: 0 0 5px rgb(135,228,236),
+                         0 0 10px rgb(135,228,236),
+                         0 0 20px rgb(135,228,236),
+                         0 0 40px rgb(135,228,236),
+                         0 0 80px rgb(135,228,236);
+    
+            color: rgb(135,252,233);
+            background-color: rgba(12, 66, 37, .7);
+            border: 1px solid rgb(135,252,233);
+            padding: 10px 15px 10px 15px;
+    
+            opacity: 0;
+            animation: enter .2s ease-out 13s 5 forwards;
+        }
+
+        /* Animation that makes the Click to Launch flicker when appearing */
+        @keyframes enter {
+            0%, 100% {
+                opacity: 1;
+            } 50% {
+                opacity: 0;
+            }
+        }
+
+        /* Sets animation for letters individually so the animate at different delays */
+        .let1 {
+            animation: blinking 8s ease-in-out 7.75s infinite alternate ;
+        }
+        .let2 {
+            animation: blinking 8s ease-in-out 2.75s infinite alternate ;
+        }
+        .let3 {
+            animation: blinking 8s ease-in-out 7.41s infinite alternate ;
+        }
+        .let4 {
+            animation: blinking 8s ease-in-out 8.94s infinite alternate ;
+        }
+        .let5 {
+            animation: blinking 8s ease-in-out 4.47s infinite alternate ;
+        }
+        .let6 {
+            animation: blinking 8s ease-in-out 6.60s infinite alternate ;
+        }
+        .let7 {
+            animation: blinking 8s ease-in-out 3.81s infinite alternate ;
+        }
+        .let8 {
+            animation: blinking 8s ease-in-out 6.39s infinite alternate ;
+        }
+        .let9 {
+            animation: blinking 8s ease-in-out 9.31s infinite alternate ;
+        }
+        .let10 {
+            animation: blinking 8s ease-in-out 6.23s infinite alternate ;
+        }
+        .let11 {
+            animation: blinking 8s ease-in-out 8.30s infinite alternate ;
+        }
+        .let12 {
+            animation: blinking 8s ease-in-out 7.05s infinite alternate ;
+        }
+        .let13 {
+            animation: blinking 8s ease-in-out 4.88s infinite alternate ;
+        }
+
+        /* The animation for letter blinking */
+        @keyframes blinking {
+            0%, 2%, 4%, 21%, 35%, 37%, 39%, 41%, 100% {
+                opacity: 1;
+            } 1%, 3%, 22%, 34%, 36%, 38%, 40% {
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+
+<!-- 
+    Things I wanna do still
+    [X] Hover effect on "Click to Launch"
+    [X] Replace Ultramarine with Retributor
+    [] 
+    [] 
+ -->
+
+<body>
+    
+    <div id="main-div">
+
+        <section>
+            <!-- 
+                Link to next HTML document, with animated letters and image
+             -->
+            <a id="enter-ship" href="../snorre-test/snorre-test2.html">
+                <!-- <div id="animate-div"></div> -->   
+                <img id="flying-ship" src="../images/spaceship.png">
+                <p id="ship-text"><strong>
+                    <span class="let1">C</span><span class="let2">L</span><span class="let3">I</span><span class="let4">C</span><span class="let5">K</span>
+                     
+                    <span class="let6">T</span><span class="let7">O</span>
+                     
+                    <span class="let8">L</span><span class="let9">A</span><span class="let10">U</span><span class="let11">N</span><span class="let12">C</span><span class="let13">H</span>
+                </strong></p>
+            </a>
+        </section>
+
+        <!--
+            Section for the central banner, containing the lines, and the gif
+        -->
+        <section>
+            <div id="astartes-div">
+
+                <img id="astartes-image" src="../images/astartes.jpg">
+    
+                <h3 class="astartes-description" id="desc-first">
+                    A short film       
+                </h3>
+                <h3 class="astartes-description" id="desc-second">
+                    by Syama Pedersen
+                </h3>
+                <h3 class="astartes-description" id="desc-third">
+                    set in the 41st Millenium
+                </h3>
+                <h3 class="astartes-description" id="desc-fourth">
+                    <strong>THERE IS ONLY WAR</strong>
+                </h3>
+                
+                <div id="play-gif"></div>
+                <img id="the-gif" src="../video/punch2.gif" alt="psyker gets destroyed">
+            </div>
+        </section>
+
+        <!--
+            Section for the marine and his hover event text
+        -->
+        <section>
+            <img id="space-marine" src="../images/Asterties.png">
+            <p id="space-marine-info"><strong>RETRIBUTOR ASTARTES</strong></p>
+        </section>
+
+    </div>
+
+</body>
+</html>
